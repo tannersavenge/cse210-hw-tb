@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 
-class Program
+public class WhyBeMindful
 {
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello Develop04 World!");
-    }
+    private string name;
+    private string description
+    private int duration;
+
 }
