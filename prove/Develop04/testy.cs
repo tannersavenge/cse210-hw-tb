@@ -1,77 +1,76 @@
 using System;
 using System.Collections.Generic;
-using System.Timers;
+using System.Threading;
 
-public class WhyBeMindful
+public class MindfulnessActivity
 {
-    private int duration;
     private string name;
     private string description;
+    private int duration;
 
-    public WhyBeMindful(string name, string description)
+    public MindfulnessActivity(string name, string description)
     {
         this.name = name;
         this.description = description;
     }
 
-    public int GetDuration()
-    {
-        return duration;
-    }
+    // Method to set the duration of the activity in seconds
 
     public void SetDuration(int duration)
     {
         this.duration = duration;
     }
 
+    // Method to start the activity with a standard message
+
     public void StartActivity()
     {
         Console.Clear();
-        Console.WriteLine($"starting {name} Activity");
+        Console.WriteLine($"Starting {name} Activity");
         Console.WriteLine(description);
-        Console.Write("please enter how many seconds you want this activity to last: ");
+        Console.Write("Please enter the duration (in secconds) for this activity: "); 
         duration = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Get ready to start");
-        AnimatePauseWithTimer(3);  // Pause for 3 seconds before starting the activity
+        Console.WriteLine("Prepare to begin...");
+        AnimatePause(3);  // Pause for 3 seconds before starting the activity
     }
 
-    public void EndTheActivity()
+    // Method to end the activity with a standard message
+    public void EndActivity()x
     {
-        Console.WriteLine("Great job your all done");
-        Console.WriteLine($"Great you completed the {name} ");
-        Console.WriteLine($"this activity was {duration} seconds long");
-        AnimatePauseWithTimer(3);  // Pause for 3 seconds before finishing
+        Console.WriteLine("Awesome! You've completed the activity."); 
+        Console.WriteLine($"Activity completed: {name}");
+        Console.WriteLine($"Duration: {duration} seconds");
+        AnimatePause(3);  // Pause for 3 seconds before finishing
     }
 
-    // the amount of time i spent realizing i had to use protected was insane
-    protected void AnimatePauseWithTimer(int seconds)
+    // Method to handle a simple animation (spinner) during pauses
+    protected void AnimatePause(int seconds)
     {
-        int elapsedSeconds = 0;
-        using (var timer = new System.Timers.Timer(1000))
+        for (int i = 0; i < seconds; i++)
         {
-            timer.Elapsed += (sender, e) =>
-            {
-                Console.Write(".");
-                elapsedSeconds++;
-                if (elapsedSeconds >= seconds)
-                {
-                    timer.Stop();
-                    Console.WriteLine();
-                }
-            };
-            timer.Start();
-            while (timer.Enabled) { }
+            Console.Write(".");
+            Thread.Sleep(1000);  
         }
+        Console.WriteLine();  
+    }
+    public int GetDuration()
+    {
+        return duration;
     }
 }
 
-public class BreathingActivity : WhyBeMindful
+public class BreathingActivity : MindfulnessActivity
 {
-    public BreathingActivity() : base("Breathing", "This activity will help you relax by helping you through breathing in and out slowly. Just focus on your breathing.") {}
+    public BreathingActivity() : base("Breathing", 
+        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
+    {
+    }
 
+    // Method to guide the user through a breathing exercise
     public void PerformBreathing()
     {
         StartActivity();
+
         int duration = GetDuration();
         int elapsedTime = 0;
 
@@ -86,43 +85,29 @@ public class BreathingActivity : WhyBeMindful
             elapsedTime += 6;
         }
 
-        EndTheActivity();
+        EndActivity();
     }
 
+    // Helper method to create a countdown timer
     private void Countdown(int seconds)
     {
-        int remainingSeconds = seconds;
-
-        // Initialize a timer with a 1-second interval
-        Timer timer = new Timer(1000);  // 1000 ms = 1 second
-
-        // Define the event handler for each tick of the timer
-        timer.Elapsed += (sender, e) =>
+        for (int i = seconds; i > 0; i--)
         {
-            if (remainingSeconds > 0)
-            {
-                Console.Write(remainingSeconds + " ");
-                remainingSeconds--;
-            }
-            else
-            {
-                timer.Stop();
-                Console.WriteLine();
-            }
-        };
-        timer.Start();
-        while (timer.Enabled) { }
+            Console.Write(i + " ");
+            Thread.Sleep(1000); // Wait for 1 second
+        }
+        Console.WriteLine();
     }
 }
 
-public class ReflectionActivity : WhyBeMindful
+public class ReflectionActivity : MindfulnessActivity
 {
     private List<string> prompts = new List<string>
     {
         "Think of a time when you stood up for someone else.",
-        "Think of a time when you did something really difficult.",
+        "Think of a time when you did something difficult.",
         "Think of a time when you helped someone in need.",
-        "Think of a time when you did something selfless."
+        "Think of a time when you did something truly selfless."
     };
 
     private List<string> questions = new List<string>
@@ -138,55 +123,51 @@ public class ReflectionActivity : WhyBeMindful
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectionActivity() : base("Reflection", "This activity will help you reflect on times in your life when you have shown strength and resilience.") {}
+    public ReflectionActivity() : base("Reflection",
+        "This activity will help you reflect on times in your life when you have shown strength and resilience.")
+    {
+    }
 
+    // Method to guide the user through the reflection exercise
     public void PerformReflection()
     {
         StartActivity();
 
+        int duration = GetDuration();
+        int timePassed = 0;
+
         Random random = new Random();
+
         string chosenPrompt = prompts[random.Next(prompts.Count)];
         Console.WriteLine($"Consider the following prompt:\n{chosenPrompt}");
         Console.WriteLine("When you have it in mind, press Enter to continue...");
         Console.ReadLine();
 
-        int elapsedTime = 0;
-        while (elapsedTime < GetDuration())
+        while (timePassed < duration)
         {
             string question = questions[random.Next(questions.Count)];
             Console.WriteLine(question);
-            Countdown(5);
-            elapsedTime += 5;
+            Countdown(5); // Pause for 5 seconds
+
+            timePassed += 5;
         }
 
-        EndTheActivity();
+        EndActivity();
     }
 
+    // Helper method to create a countdown timer
     private void Countdown(int seconds)
     {
-        int remainingSeconds = seconds;
-
-        Timer timer = new Timer(1000);
-
-        timer.Elapsed += (sender, e) =>
+        for (int i = seconds; i > 0; i--)
         {
-            if (remainingSeconds > 0)
-            {
-                Console.Write(remainingSeconds + " ");
-                remainingSeconds--;
-            }
-            else
-            {
-                timer.Stop();
-                Console.WriteLine();
-            }
-        };
-        timer.Start();
-        while (timer.Enabled) { }
+            Console.Write(i + " ");
+            Thread.Sleep(1000);
+        }
+        Console.WriteLine();
     }
 }
 
-public class ListingActivity : WhyBeMindful
+public class ListingActivity : MindfulnessActivity
 {
     private List<string> prompts = new List<string>
     {
@@ -199,7 +180,8 @@ public class ListingActivity : WhyBeMindful
 
     private List<string> listedItems;
 
-    public ListingActivity() : base("Listing", "This activity will help you think on the good things in your life by having you list as many things as you can about a specific topic.")
+    public ListingActivity() : base("Listing", 
+        "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
         listedItems = new List<string>();
     }
@@ -207,6 +189,7 @@ public class ListingActivity : WhyBeMindful
     public void PerformListing()
     {
         StartActivity();
+
         int duration = GetDuration();
         Random random = new Random();
         string chosenPrompt = prompts[random.Next(prompts.Count)];
@@ -215,7 +198,7 @@ public class ListingActivity : WhyBeMindful
         Countdown(5);
 
         Console.WriteLine("Start listing items. Type each item and press Enter:");
-
+        
         DateTime startTime = DateTime.Now;
         while ((DateTime.Now - startTime).TotalSeconds < duration)
         {
@@ -226,37 +209,24 @@ public class ListingActivity : WhyBeMindful
                 listedItems.Add(item);
             }
         }
+
         Console.WriteLine($"You listed {listedItems.Count} items:");
         foreach (string item in listedItems)
         {
             Console.WriteLine($"- {item}");
         }
 
-        EndTheActivity();
+        EndActivity();
     }
 
     private void Countdown(int seconds)
     {
-        int remainingSeconds = seconds;
-
-        Timer timer = new Timer(1000);
-
-        timer.Elapsed += (sender, e) =>
+        for (int i = seconds; i > 0; i--)
         {
-            if (remainingSeconds > 0)
-            {
-                Console.Write(remainingSeconds + " ");
-                remainingSeconds--;
-            }
-            else
-            {
-                timer.Stop();
-                Console.WriteLine();
-            }
-        };
-
-        timer.Start();
-        while (timer.Enabled) { }
+            Console.Write(i + " ");
+            Thread.Sleep(1000);
+        }
+        Console.WriteLine();
     }
 }
 
@@ -267,36 +237,36 @@ public class Program
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the why be mindful program");
-            Console.WriteLine("please select and activity");
-            Console.WriteLine("1. the breathing activity");
-            Console.WriteLine("2. reflection activity");
-            Console.WriteLine("3. listing activity");
-            Console.WriteLine("4. Exit the code");
-            Console.WriteLine("Put in your activity number 1-4");
+            Console.WriteLine("Welcome to the Mindfulness Program!");
+            Console.WriteLine("Please choose an activity:");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. Exit");
+            Console.Write("Enter your choice (1-4): ");
             string choice = Console.ReadLine();
-
-            // i had to google the switcvh thing it really helped
             switch (choice)
             {
                 case "1":
                     BreathingActivity breathingActivity = new BreathingActivity();
                     breathingActivity.PerformBreathing();
                     break;
+
                 case "2":
-                    ReflectionActivity reflectionActivity = new ReflectionActivity();
-                    reflectionActivity.PerformReflection();
-                    break;
+                    
+
                 case "3":
                     ListingActivity listingActivity = new ListingActivity();
                     listingActivity.PerformListing();
                     break;
+
                 case "4":
                     Console.WriteLine("Thank you for using the Mindfulness Program. Goodbye!");
                     return;
+
                 default:
                     Console.WriteLine("Invalid choice. Please enter a number between 1 and 4.");
-                    System.Threading.Thread.Sleep(2000);
+                    Thread.Sleep(2000);
                     break;
             }
         }
