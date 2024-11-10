@@ -2,25 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-public class MindfulnessActivity
-{
+// i got incredibly angry at this code here you go i literally coudlnt figure out how to debug it timer had so many 
+// problems that i found another way through threads the animate pause literally shot me in the foot so many more
+//times than i can count i learned way to much during this activity but honestly im proud of the end result
+public class WhyBeMindfulActivity{
     private string name;
     private string description;
     private int duration;
 
-    public MindfulnessActivity(string name, string description)
-    {
+    public WhyBeMindfulActivity(string name, string description){
         this.name = name;
         this.description = description;
     }
 
-    public void SetDuration(int duration)
-    {
+    public void SetDuration(int duration){
         this.duration = duration;
     }
 
-    public void StartActivity()
-    {
+    public void StartActivity(){
         Console.Clear();
         Console.WriteLine($"Starting {name} Activity");
         Console.WriteLine(description);
@@ -30,10 +29,9 @@ public class MindfulnessActivity
         AnimatePause(3);
     }
 
-    public void EndActivity()
-    {
-        Console.WriteLine("Great job! You have completed the activity.");
-        Console.WriteLine($"Activity completed: {name}");
+    public void EndActivity(){
+        Console.WriteLine("Awesome, You did the activity.");
+        Console.WriteLine($"The activity you completed was {name}");
         Console.WriteLine($"Duration: {duration} seconds");
         AnimatePause(3);
     }
@@ -42,7 +40,7 @@ public class MindfulnessActivity
     {
         for (int i = 0; i < seconds; i++)
         {
-            Console.Write(".");
+            Console.Write(".Calculating.");
             Thread.Sleep(1000);
         }
         Console.WriteLine();
@@ -54,21 +52,16 @@ public class MindfulnessActivity
     }
 }
 
-public class BreathingActivity : MindfulnessActivity
-{
-    public BreathingActivity() : base("Breathing", 
-        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
-    {
+public class BreathingActivity : WhyBeMindfulActivity{
+    public BreathingActivity() : base("Breathing", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing."){
     }
 
-    public void PerformBreathing()
-    {
+    public void PerformBreathing(){
         StartActivity();
         int duration = GetDuration();
         int elapsedTime = 0;
 
-        while (elapsedTime < duration)
-        {
+        while (elapsedTime < duration){
             Console.WriteLine("Breathe in...");
             Countdown(3);
             Console.WriteLine("Breathe out...");
@@ -79,8 +72,7 @@ public class BreathingActivity : MindfulnessActivity
         EndActivity();
     }
 
-    private void Countdown(int seconds)
-    {
+    private void Countdown(int seconds){
         for (int i = seconds; i > 0; i--)
         {
             Console.Write(i + " ");
@@ -90,10 +82,8 @@ public class BreathingActivity : MindfulnessActivity
     }
 }
 
-public class ReflectionActivity : MindfulnessActivity
-{
-    private List<string> prompts = new List<string>
-    {
+public class ReflectionActivity : WhyBeMindfulActivity{
+    private List<string> prompts = new List<string>{
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
         "Think of a time when you helped someone in need.",
@@ -113,13 +103,10 @@ public class ReflectionActivity : MindfulnessActivity
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectionActivity() : base("Reflection",
-        "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.")
-    {
+    public ReflectionActivity() : base("Reflection","This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life."){
     }
 
-    public void PerformReflection()
-    {
+    public void PerformReflection(){
         StartActivity();
         int duration = GetDuration();
         int elapsedTime = 0;
@@ -141,8 +128,7 @@ public class ReflectionActivity : MindfulnessActivity
         EndActivity();
     }
 
-    private void Countdown(int seconds)
-    {
+    private void Countdown(int seconds){
         for (int i = seconds; i > 0; i--)
         {
             Console.Write(i + " ");
@@ -152,11 +138,9 @@ public class ReflectionActivity : MindfulnessActivity
     }
 } // <-- Add this missing closing bracket here
 
-public class ListingActivity : MindfulnessActivity
-{
-    private List<string> prompts = new List<string>
-    {
-        "Who are people that you appreciate?",
+public class ListingActivity : WhyBeMindfulActivity{
+    private List<string> prompts = new List<string>{
+        "Who are people that you appreciate or are thankful for?",
         "What are personal strengths of yours?",
         "Who are people that you have helped this week?",
         "When have you felt the Holy Ghost this month?",
@@ -180,12 +164,9 @@ public class ListingActivity : MindfulnessActivity
         Console.WriteLine($"Consider the following prompt:\n{chosenPrompt}");
         Console.WriteLine("You will have a few seconds to begin preparing your thoughts.");
         Countdown(5);
-
         Console.WriteLine("Start listing items. Type each item and press Enter:");
         DateTime startTime = DateTime.Now;
-        
-        while ((DateTime.Now - startTime).TotalSeconds < duration)
-        {
+        while ((DateTime.Now - startTime).TotalSeconds < duration){
             Console.Write("> ");
             string item = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(item))
@@ -195,16 +176,14 @@ public class ListingActivity : MindfulnessActivity
         }
 
         Console.WriteLine($"You listed {listedItems.Count} items:");
-        foreach (string item in listedItems)
-        {
+        foreach (string item in listedItems){
             Console.WriteLine($"- {item}");
         }
 
         EndActivity();
     }
 
-    private void Countdown(int seconds)
-    {
+    private void Countdown(int seconds){
         for (int i = seconds; i > 0; i--)
         {
             Console.Write(i + " ");
@@ -214,11 +193,10 @@ public class ListingActivity : MindfulnessActivity
     }
 }
 
-public class Program
-{
+public class Program{
     static void Main(string[] args)
     {
-        while (true)
+        while(true)
         {
             Console.Clear();
             Console.WriteLine("Welcome to the Mindfulness Program!");
@@ -227,9 +205,10 @@ public class Program
             Console.WriteLine("2. Reflection Activity");
             Console.WriteLine("3. Listing Activity");
             Console.WriteLine("4. Exit");
-            Console.Write("Enter your choice (1-4): ");
-            
+            Console.Write("Enter your choice 1-4 based on what activity best matcheds you: ");
             string choice = Console.ReadLine();
+            // this is actually a really cool way to deal with if a user give you an unvalid option 
+            // had to look this up
             switch (choice)
             {
                 case "1":
