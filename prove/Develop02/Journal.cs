@@ -30,8 +30,9 @@ namespace Journaltask{
             Random random = new Random();
             String prompt = _prompts[random.Next(0, _prompts.Count)];
             String date = DateTime.Now.ToString();
-            Entry newEntry = new Entry(date, prompt, content);
             Console.WriteLine($"This is the prompt {prompt}");
+            Entry newEntry = new Entry(date, prompt, content);
+
             _entries.Add(newEntry);
         }
 
