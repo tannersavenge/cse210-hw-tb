@@ -23,7 +23,7 @@ namespace Journaltask{
     
         public void AddEntry(string content){
             if (_prompts == null || _prompts.Count == 0){
-                Console.WriteLine("Error: No prompts available. Cannot add a new journal entry.");
+                Console.WriteLine("Error cannot add prompt try again.");
                 return;
             }
 
