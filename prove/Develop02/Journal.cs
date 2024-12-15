@@ -68,7 +68,10 @@ namespace Journaltask{
                         }
                     }
                 }
-                Console.WriteLine($"")
+                Console.WriteLine($"You got the journal from {filename}");
+            }
+            catch (Exception e){
+                Console.WriteLine("Error loading the journal try again later: " + e.Message);
             }
         }
     }
