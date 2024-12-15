@@ -24,5 +24,6 @@ namespace Journaltask{
             return $"Date: {Date}\nPrompt: {Prompt}\nContent: {Content}\n";
         }
 
+
     }
 }
