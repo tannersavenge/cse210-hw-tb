@@ -41,6 +41,7 @@ namespace Journaltask{
                     foreach (Entry entry in _entries)
                     {
                         writer.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Content}");
+
                     }
                     Console.WriteLine($"Journal Saved to {filename}");
                 }
@@ -61,7 +62,8 @@ namespace Journaltask{
                 using(StreamReader reader = new StreamReader(filename)){
                     string line;
                     while ((line=reader.ReadLine()) != null){
-                        String[] parts = line.Split(" -|- ");
+                        string[] parts = line.Split('|');
+
                         if (parts.Length == 3){
                             Entry entry = new Entry(parts[0], parts[1], parts[2]);
                             _entries.Add(entry);

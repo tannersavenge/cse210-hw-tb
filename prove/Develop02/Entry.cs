@@ -21,7 +21,8 @@ namespace Journaltask{
         }
 
         public override string ToString(){
-            return $"Date: {Date}/nPrompt: {Prompt}/n Content: {Content}/n";
+            return $"Date: {Date}\nPrompt: {Prompt}\nContent: {Content}\n";
         }
+
     }
 }

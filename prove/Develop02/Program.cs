@@ -31,9 +31,21 @@ namespace Journaltask{
                         string saveFile = Console.ReadLine();
                         journal.SaveToFile(saveFile);
                         break;
+                    case "4":
+                        Console.WriteLine("give me the file you want to add to or load ( ex: iLoveJournaling.txt");
+                        string loadFile = Console.ReadLine();
+                        journal.LoadFromFile(loadFile);
+                        break;
+                    case "5":
+                        run = false;
+                        break;
+                    default:
+                        Console.WriteLine("You didn't choose an option that works try again.");
+                        break;
 
                 }
             }
+            Console.WriteLine("Thanks for using me have an amazing day!");
         }
     }
 }
