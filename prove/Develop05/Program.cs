@@ -2,6 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+
+/*
+https://www.tutorialspoint.com/chash-int-parse-method
+https://stackoverflow.com/questions/1310223/what-does-this-mean-public-name-get-set
+https://www.tutorialspoint.com//csharp/csharp_inheritance.htm
+https://www.tutorialspoint.com//csharp/csharp_polymorphism.htm
+https://www.w3schools.com/cs/index.php
+https://www.codecademy.com/courses/learn-c-sharp-lists-and-linq/lessons/csharp-lists/exercises/introduction-to-lists
+https://www.codechef.com/ide
+
+I exceeded expectations by implementing error handleing in most cases, haveing progress tracking with an easy to use intuitive interface.
+somethings i did in this program took me multiple hours to learn.
+*/
 namespace EternalQuestGoal{
     class Program{
         private static int _totalPoints = 0;
