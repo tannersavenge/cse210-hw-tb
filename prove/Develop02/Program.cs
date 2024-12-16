@@ -1,5 +1,15 @@
-using System;
+//https://stackoverflow.com/questions/8037070/whats-the-fastest-way-to-read-a-text-file-line-by-line
+//https://stackoverflow.com/questions/7569904/easiest-way-to-read-from-and-write-to-files
+//https://www.c-sharpcorner.com/csharp-tutorials
+//https://stackoverflow.com/questions/7387085/how-to-read-an-entire-file-to-a-string-using-c
 
+/*
+This is tanner the author creator or inventor whichever you want to call it I followed all requirments and
+i went a step further by doing the error handleing and added a system where the prompts are randomly asked.
+The list is also set up in a way that i could add a multitide of prompts and it wouldnt ruin the code.
+*/
+
+using System;
 namespace Journaltask{
     class Program
     {
@@ -19,9 +29,7 @@ namespace Journaltask{
                 string choice = Console.ReadLine();
                 switch (choice){
                     case "1":
-                        Console.WriteLine("enter your journal entry: ");
-                        string content = Console.ReadLine();
-                        journal.AddEntry(content);
+                        journal.AddEntry();
                         break;
                     case "2":
                         journal.displayEntries();

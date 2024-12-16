@@ -21,20 +21,23 @@ namespace Journaltask{
             };
         }
     
-        public void AddEntry(string content){
-            if (_prompts == null || _prompts.Count == 0){
-                Console.WriteLine("Error cannot add prompt try again.");
+        public void AddEntry(){
+            if (_prompts == null || _prompts.Count == 0)
+            {
+                Console.WriteLine("Error");
                 return;
             }
-
             Random random = new Random();
-            String prompt = _prompts[random.Next(0, _prompts.Count)];
-            String date = DateTime.Now.ToString();
-            Console.WriteLine($"This is the prompt {prompt}");
+            string prompt = _prompts[random.Next(_prompts.Count)];
+            Console.WriteLine($"Prompt: {prompt}");
+            Console.Write("Write your journal entry in response to the prompt: ");
+            string content = Console.ReadLine();
+            string date = DateTime.Now.ToString();
             Entry newEntry = new Entry(date, prompt, content);
-
             _entries.Add(newEntry);
+            Console.WriteLine("New journal entry added successfully!");
         }
+
 
         public void displayEntries(){
             foreach (Entry entry in _entries){
