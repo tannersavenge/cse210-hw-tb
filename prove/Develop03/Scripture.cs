@@ -12,8 +12,14 @@ namespace ScriptureMemorizer{
             get;
             set;
         }
+        public string Text{
+            get;
+            private set;
+
+        }
         public Scripture(Reference reference, string text){
             Reference = reference;
+            Text = text;
             Words = new List<Word>();
             foreach (string Word in text.Split(" ")){
                 Words.Add(new Word(Word));

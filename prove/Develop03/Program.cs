@@ -11,13 +11,20 @@ namespace ScriptureMemorizer{
         {
             List<Scripture> scriptureLibrary = LoadScriptureLibrary();
             Random random = new Random();
-            Scripture selectedScripture = scriptureLibrary[random.Next(scriptureLibrary.Count)];
+            Scripture selectedScripture = null;
             bool run = true;
             while(run){
                 Console.Clear();
-                if (selectedScripture.AreAllWordsHidden()){
+                if (selectedScripture == null && scriptureLibrary.Count > 0){
+                    selectedScripture = scriptureLibrary[random.Next(scriptureLibrary.Count)];
+                }
+                if (selectedScripture != null){
+                    selectedScripture.Display();
+                }
+                if (selectedScripture != null && selectedScripture.AreAllWordsHidden()){
                     Console.WriteLine("Great Job! You have fully memorized the scripture.");
-                    break;
+                    selectedScripture = null; // Reset to allow another scripture selection
+                    continue;
                 }
 
                 Console.WriteLine("\nOptions:");
@@ -30,10 +37,15 @@ namespace ScriptureMemorizer{
 
                 switch (input){
                     case "1":
-                        selectedScripture.HideRandomWords();
+                        if (selectedScripture != null){
+                            selectedScripture.HideRandomWords();
+                        }
                         break;
                     case "2":
-                        selectedScripture.ShowHint();
+                        if (selectedScripture != null){
+                            selectedScripture.ShowHint();
+                            Console.ReadLine(); 
+                        }
                         break;
                     case "3":
                         AddNewScripture(scriptureLibrary);
@@ -52,17 +64,32 @@ namespace ScriptureMemorizer{
         }
         private static List<Scripture> LoadScriptureLibrary(){
             List<Scripture> library = new List<Scripture>();
+             library.Add(new Scripture(
+                new Reference("John", "3:16"),
+                "For God so loved the world that he gave his only begotten Son, that whoever believes in him shall not perish but have eternal life."));
+            
+            library.Add(new Scripture(
+                new Reference("Proverbs", "3:5-6"),
+                "Trust in the Lord with all your heart might mind and strength and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."));
+            
+            library.Add(new Scripture(
+                new Reference("2 Nephi", "2:25"),
+                "Adam fell that men might be; and men are, that they might have joy."));
+            
+            library.Add(new Scripture(
+                new Reference("Alma", "37:6"),
+                "By small and simple things are great things brought to pass; and small means in many instances doth confound the wise."));
+            
             if (File.Exists("scriptures.txt")){
                 foreach (string line in File.ReadAllLines("scriptures.txt")){
                     var parts = line.Split("|");
-                    if (parts.Length == 3){
+                    if (parts.Length >= 3){
+                        string book = parts[0];
+                        string startVerse = parts[1];
+                        string text = parts[2];
                         library.Add(new Scripture(new Reference(parts[0], parts[1]), parts[2]));
                     }
                 }
-            }else{
-                library.Add(new Scripture(new Reference("John", "3:16"), "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."));
-                library.Add(new Scripture(new Reference("Proverbs", "3:5-6"), "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."));
-                library.Add(new Scripture(new Reference("Psalm", "23:1"), "The Lord is my shepherd; I shall not want."));   
             }
             return library;
 
