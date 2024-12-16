@@ -55,7 +55,7 @@ namespace ScriptureMemorizer{
             if (File.Exists("scriptures.txt")){
                 foreach (string line in File.ReadAllLines("scriptures.txt")){
                     var parts = line.Split("|");
-                    if (parts.Length = 3){
+                    if (parts.Length == 3){
                         library.Add(new Scripture(new Reference(parts[0], parts[1]), parts[2]));
                     }
                 }
@@ -69,8 +69,23 @@ namespace ScriptureMemorizer{
         }
         private static void SaveScriptureLibrary(List<Scripture> library){
             using (StreamWriter writer = new StreamWriter("scriptures.txt")){
-                    
+                    foreach (var scripture in library){
+                        writer.WriteLine($"{scripture.Reference.Book}|{scripture.Reference.StartVerse}|{scripture.Reference.EndVerse}|{scripture.Text}");
+                    }
             }
+            Console.WriteLine("You saved the scripture.");
+        }
+        private static void AddNewScripture(List<Scripture> library){
+            Console.WriteLine("What book is it bible, Book of Mormon, Pearl of great price etc.");
+            string book = Console.ReadLine();
+            Console.WriteLine("What verse are you startinh at.");
+            string startVerse = Console.ReadLine();
+            Console.WriteLine("Give me the full verse.");
+            string text = Console.ReadLine();
+
+            library.Add(new Scripture(new Reference(book, startVerse), text));
+            Console.WriteLine("Great you added a scripture.");
+
         }
     }
 }
