@@ -3,6 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.ComponentModel;
 
+/*
+https://learn.microsoft.com/en-us/dotnet/api/system.random?view=net-9.0
+https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-9.0
+https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-9.0
+https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements
+https://stackoverflow.com/questions/8037070/whats-the-fastest-way-to-read-a-text-file-line-by-line
+https://stackoverflow.com/questions/7569904/easiest-way-to-read-from-and-write-to-files
+https://www.c-sharpcorner.com/csharp-tutorials
+https://stackoverflow.com/questions/7387085/how-to-read-an-entire-file-to-a-string-using-c
+
+and with some debug help from like github ai
+
+this code is not perfect but its works well keep pressing 1 at the begining to get started.
+
+I exceeded requirments by adding the saving and loading process by showing a hint and letting the user add there own scripture i hvae done this
+
+*/
 
 namespace ScriptureMemorizer{
     class Program
