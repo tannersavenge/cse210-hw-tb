@@ -11,12 +11,12 @@ namespace EternalQuestGoal{
             LoadData();
             bool run = true;
             while (run){
-                Console.Clear();
+                //Console.Clear();
                 DisplayStatus();
 
                 Console.WriteLine("1. Create New Goal");
                 Console.WriteLine("2. Record Event");
-                Console.WriteLine("3. List Goals");
+                Console.WriteLine("3. Show Points");
                 Console.WriteLine("4. Save and Quit");
                 Console.Write("Choose an option: ");
 
@@ -65,7 +65,7 @@ namespace EternalQuestGoal{
              Goal goal = choice switch
             {
                 "1" => new SimpleGoal(name, points), "2" => new EternalGoal(name, points), "3" => CreateCheckGoal(name, points),  //The name 'CreateCheckGoal' does not exist in the current context
-                _ => throw new Exception("Invalid goal type")
+                _ => throw new Exception("not a good goal type")
             };
 
              _goals.Add(goal);
@@ -85,13 +85,13 @@ namespace EternalQuestGoal{
         private static void RecordEvent()
         {
             ListGoals();
-            Console.Write("Select a goal to record: ");
+            Console.Write("Select a goal to record (enter the number): ");
             int index = int.Parse(Console.ReadLine()) - 1;
             if (index >= 0 && index < _goals.Count) 
             {
                 int pointsEarned = _goals[index].RecordEvent(); 
                 _totalPoints += pointsEarned;
-                Console.WriteLine($"You got  {pointsEarned}amount of points points! Press Enter to keep going.");
+                Console.WriteLine($"You got  {pointsEarned} amount of points points! Press Enter to keep going.");
                 Console.ReadLine();
             }else{
                 Console.WriteLine("Choose an actual goal or please recheck your spelling");
