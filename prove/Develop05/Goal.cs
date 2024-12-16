@@ -31,7 +31,10 @@ namespace EternalQuestGoal{
             bool isComplete = bool.Parse(details[2]);
 
             return type switch{
-                "SimpleGoal" => new SimpleGoal(name, points) { IsComplete = isComplete }, "EternalGoal" => new EternalGoal(name, points), "ChecklistGoal" => ChecklistGoal.CreateChecklistFromString(details),_ => throw new Exception("Unknown goal type")
+                "SimpleGoal" => new SimpleGoal(name, points) { IsComplete = isComplete },
+                 "EternalGoal" => new EternalGoal(name, points),
+                  "CheckGoal" => ChecklistGoal.CreateCheckFromString(details), //'CheckGoal' does not contain a definition for 'CreateChecklistFromString'
+                  _ => throw new Exception("Unknown goal type")
             };
          }
          
