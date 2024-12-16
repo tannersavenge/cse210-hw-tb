@@ -7,7 +7,7 @@ namespace EternalQuestGoal{
         }
         
         public override int RecordEvent(){
-            return points;
+            return Points; 
         }
         public override string GetProgress(){
             return "[∞]";

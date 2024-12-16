@@ -5,7 +5,7 @@ using System.IO;
 namespace EternalQuestGoal{
     class Program{
         private static int _totalPoints = 0;
-        private static List<Goal> _goals = new List<Goal>(); //'Program.List<Goal>(_goals)' must declare a body because it is not marked abstract, extern, or partial Syntax error, '(' expected The type or namespace name '_goals' could not be found (are you missing a using directive or an assembly reference?) Identifier expected Default parameter value for '' must be a compile-time constant ) expected
+        private static List<Goal> _goals = new List<Goal>(); 
         static void Main(string[] args)
         {
             LoadData();
@@ -68,7 +68,7 @@ namespace EternalQuestGoal{
                 _ => throw new Exception("Invalid goal type")
             };
 
-             _goals.Add(goal); //The name '_goals' does not exist in the current context
+             _goals.Add(goal);
             Console.WriteLine("Awesome you made a new goal.");
 
         }
@@ -87,9 +87,9 @@ namespace EternalQuestGoal{
             ListGoals();
             Console.Write("Select a goal to record: ");
             int index = int.Parse(Console.ReadLine()) - 1;
-            if (index >= 0 && index < _goals.Count) //The name '_goals' does not exist in the current context
+            if (index >= 0 && index < _goals.Count) 
             {
-                int pointsEarned = _goals[index].RecordEvent(); //The name '_goals' does not exist in the current context
+                int pointsEarned = _goals[index].RecordEvent(); 
                 _totalPoints += pointsEarned;
                 Console.WriteLine($"You got  {pointsEarned}amount of points points! Press Enter to keep going.");
                 Console.ReadLine();
@@ -101,8 +101,8 @@ namespace EternalQuestGoal{
         }
         private static void ListGoals(){
             Console.WriteLine("\nGoals:");
-            for (int i = 0; i < _goals.Count; i++){ //The name '_goals' does not exist in the current context
-                Console.WriteLine($"{i + 1}. {_goals[i].GetProgress()} {_goals[i].Name}"); //The name '_goals' does not exist in the current context
+            for (int i = 0; i < _goals.Count; i++){ 
+                Console.WriteLine($"{i + 1}. {_goals[i].GetProgress()} {_goals[i].Name}"); 
             }
             Console.WriteLine();
         }
