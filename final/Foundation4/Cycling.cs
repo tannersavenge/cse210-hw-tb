@@ -4,7 +4,8 @@ namespace Project4{
     public class Cycling : Activity{
         private double _speed; // Speed in mph or kph
 
-        public Cycling(string date, int duration, double speed): base(date, duration){
+         public Cycling(DateTime date, int duration, double speed): base(date, duration) 
+        {
             _speed = speed;
         }
 
@@ -19,7 +20,7 @@ namespace Project4{
                 return _speed * 1.60934; // this is the kilometers converter
             }
         }
-        public override double GetPace(){
+        public override double GetPace(){ 
             return 60 / _speed;
         }
 
