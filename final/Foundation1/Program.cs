@@ -7,7 +7,7 @@ namespace Project1{
         {
             var video1 = new Video("how to rizz up chicks", "James Charles", 600);
             var video2 = new Video("Why luigi mangione is innocent", "Luigi Mangione", 480);
-            var video3 = new Video("How mancy ribs fit the circomference of your mom", "Aidan Reeves", 42000);
+            var video3 = new Video("How are you doing today you amazing TA", "Aidan Reeves", 42000);
 
             // the comment text was ai generated just the comments 
             video1.AddComment(new Comment("Chris", "This was really helpful!"));
