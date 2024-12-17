@@ -10,20 +10,20 @@ namespace Project2{
         public string Name => _name;
         public string ProductId => _productId;
         public double PricePerUnit => _pricePerUnit;
-        public int Quantity => _quantity; // The name '_quantity' does not exist in the current context
+        public int Quantity => _quantity; 
         
         public Product(string name, string productId, double pricePerUnit, int quantity){
             _name = name;
             _productId = productId;
             _pricePerUnit = pricePerUnit;
-            _quantity = quantity; //The name '_quantity' does not exist in the current context
+            _quantity = quantity; 
         }
 
         public double GetTotalPrice(){
-            return _pricePerUnit * _quantity; //The name '_quantity' does not exist in the current context
+            return _pricePerUnit * _quantity; 
         }
         public override string ToString(){
-            return $"{_name} (ID: {_productId}) - ${_pricePerUnit} x {_quantity}"; //The name '_quantity' does not exist in the current context
+            return $"{_name} (ID: {_productId}) - ${_pricePerUnit} x {_quantity}"; 
         }
     }
 }
