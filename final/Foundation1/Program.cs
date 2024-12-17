@@ -1,6 +1,10 @@
 using System;
 
 namespace Project1{
+
+    //https://learn.microsoft.com/en-us/dotnet/csharp/
+    //https://www.tutorialspoint.com/object-oriented-programming-c/index.asp
+    //https://learn.microsoft.com/en-us/dotnet/
     class Program
     {
         static void Main(string[] args)
