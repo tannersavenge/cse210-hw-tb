@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+/*
+    I looked into the swimming and exceeded the requirments by having more specific calculations for swimming
+    Using encapsulation and abstraction with a reusable design to easily add a multitude of more new activities
+    with little code improvement.
+*/
+
 namespace Project4{
     class Program
     {
