@@ -1,6 +1,11 @@
 using System;
 
 namespace Project3{
+
+    //https://www.guru99.com/c-sharp-inheritance-polymorphism.html
+    //https://dotnettutorials.net/lesson/polymorphism-csharp/
+    //https://www.c-sharpcorner.com/article/encapsulation-inheritance-and-polymorphism-in-c-sharp/
+    //https://dev.to/iamcymentho/understanding-event-driven-architecture-in-c-with-real-life-scenarios-4h7g
     class Program{
         static void Main(string[] args){
             var address1 = new Address("123 random st", "Jackson", "MI", "USA"); 
