@@ -1,6 +1,15 @@
 using System;
 using System.Collections.Generic;
 
+
+/*
+https://www.codechef.com/ide
+https://www.geeksforgeeks.org/csharp-programming-language/
+https://www.c-sharpcorner.com/csharp-tutorials
+and w3 schools website for c#
+
+part 2 of the final.
+*/
 namespace Project2{
     class Program{
         static void Main(string[] args){
