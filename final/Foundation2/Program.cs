@@ -29,7 +29,7 @@ namespace Project2{
             Console.WriteLine(order2.GetShippingLabel());
             Console.WriteLine($"Total Cost: ${order2.CalculateTotalCost()}\n");
 
-            Console.WriteLine("If you liked this give me a 200/200 on the final pls");
+            Console.WriteLine("If you liked this give me a 200/200 on the final pls");  
 
         }
     }
